@@ -130,7 +130,7 @@ Proof: `./mvnw -q test -Dtest='TratamentoErrosTest#soChaveDuplicadaVira422'`
 ## Handoff
 
 - **Settled mid-build:** none
-- **Dispatched:** ponytail-reviewer em `6405faf` (diff da árvore vazia até `6405faf`) - returned, 0 achados; impl-verifier em `2675cbe`
+- **Dispatched:** ponytail-reviewer em `6405faf` (diff da árvore vazia até `6405faf`) - returned, 0 achados; impl-verifier em `0865207` - returned, 2 achados fechados em `7decbc6`
 - **Boundary:** C1-C27 closed at `6405faf`
 - **Abandoned:** none
 - **Walked:** C22 - `docker compose -f docker/docker-compose.yml up -d mysql`, `./mvnw spring-boot:run`, roteiro por `curl`: criar 201 com eco, repetir 422, saldo `500.00`, 50 transações de `10.00` aprovadas e a 51ª `SALDO_INSUFICIENTE`, saldo `0.00`, senha errada `SENHA_INVALIDA`, cartão inexistente `CARTAO_INEXISTENTE`, saldo de inexistente 404. C23 - aplicação subida com o MySQL fora do ar, MySQL ligado 20 s depois: a partida concluiu 27 s após o início da conexão e o GET respondeu 404.
