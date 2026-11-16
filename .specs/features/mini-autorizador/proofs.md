@@ -1,6 +1,6 @@
 # mini-autorizador proofs
 
-**HEAD**: 2a6ace1
+**HEAD**: 8cdb96a
 **Tree**: clean
 **Result**: 30 pass, 0 fail; mutations 3 killed, 0 not
 
@@ -20,9 +20,9 @@
 | C12 | `./mvnw -q test -Dtest='AutorizacaoTest'` | count unknown | - | pass |
 | C12 | `./mvnw -q test -Dtest='TransacaoApiTest#senhaErradaComSaldoInsuficienteRespondeSenhaInvalida'` | count unknown | - | pass |
 | C13 | `./mvnw -q test -Dtest='ConcorrenciaTest'` | count unknown | - | pass |
-| C14 | `bash -c "! rg -n -w 'if|break|continue' src/main/java/br/com/miniautorizador/transacao"` | count unknown | - | pass |
+| C14 | `bash -c "! rg -n -w -e if -e break -e continue src/main/java/br/com/miniautorizador/transacao"` | count unknown | - | pass |
 | C15 | `./mvnw -q test -Dtest='TransacaoApiTest#acceptJsonNaoDa406'` | count unknown | - | pass |
-| C16 | `bash -c "! rg -n -w 'double|float|Double|Float' src/main/java"` | count unknown | - | pass |
+| C16 | `bash -c "! rg -n -w -e double -e float -e Double -e Float src/main/java"` | count unknown | - | pass |
 | C17 | `./mvnw -q test -Dtest='TransacaoApiTest#dezCentavosSomamExato'` | count unknown | - | pass |
 | C18 | `./mvnw -q test -Dtest='TransacaoApiTest#valorInvalidoResponde400'` | count unknown | - | pass |
 | C19 | `./mvnw -q test -Dtest='ValidacaoPayloadTest#numeroCartaoForaDoFormato'` | count unknown | - | pass |
