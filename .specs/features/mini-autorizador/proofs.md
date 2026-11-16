@@ -1,6 +1,6 @@
 # mini-autorizador proofs
 
-**HEAD**: 8cdb96a
+**HEAD**: a58e7c3
 **Tree**: clean
 **Result**: 30 pass, 0 fail; mutations 3 killed, 0 not
 
@@ -32,7 +32,7 @@
 | C23 | `./mvnw -q test -Dtest='PartidaTest#esperaOMysqlPor60Segundos'` | count unknown | - | pass |
 | C24 | `bash -c "diff <(sed -n '/^  mysql:/,\$p' docs/docker-compose.original.yml) <(sed -n '/^  mysql:/,\$p' docker/d` | count unknown | - | pass |
 | C24 | `bash -c "! rg -n '^  mongo:' docker/docker-compose.yml"` | count unknown | - | pass |
-| C25 | `bash -c "rg -q '^## Como rodar' README.md && rg -q '^## Como testar' README.md && rg -q '^## Suposições' READM` | count unknown | - | pass |
+| C25 | `bash -c "rg -q 'docs/README.md' README.md && rg -q '^\./mvnw test' README.md && rg -q 'DOCKER_DEFAULT_PLATFORM` | count unknown | - | pass |
 | C26 | `bash -c "python3 -I .specs/features/mini-autorizador/assumptions_no_readme.py .specs/features/mini-autorizador` | count unknown | - | pass |
 | C27 | `./mvnw -q test -Dtest='TratamentoErrosTest#soChaveDuplicadaVira422'` | count unknown | - | pass |
 | Build | `./mvnw -q -DskipTests package` | - | - | pass |
