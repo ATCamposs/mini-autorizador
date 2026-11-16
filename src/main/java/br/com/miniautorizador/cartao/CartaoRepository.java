@@ -29,7 +29,7 @@ public class CartaoRepository {
 			.optional();
 	}
 
-	/** Débito atômico: o banco só debita se houver saldo. Devolve 1 se debitou, 0 se não. */
+	/** ADR-0001: débito atômico, o banco só debita se houver saldo. Devolve 1 se debitou, 0 se não. */
 	public int debitar(String numero, BigDecimal valor) {
 		return jdbc.sql("UPDATE cartao SET saldo = saldo - ? WHERE numero = ? AND saldo >= ?")
 			.params(valor, numero, valor)

@@ -90,11 +90,11 @@ Proof: `./mvnw -q test -Dtest='PartidaTest#esperaOMysqlPor60Segundos'`
 Proof: `bash -c "diff <(sed -n '/^  mysql:/,\$p' docs/docker-compose.original.yml) <(sed -n '/^  mysql:/,\$p' docker/docker-compose.yml)"`
 Proof: `bash -c "! rg -n '^  mongo:' docker/docker-compose.yml"`
 
-**C25** - O README traz como rodar, como testar, as suposições, os riscos aceitos e o aviso do `mysql:5.7` amd64 (AC 19)
-Proof: `bash -c "rg -q '^## Como rodar' README.md && rg -q '^## Como testar' README.md && rg -q '^## Suposições' README.md && rg -q '^## Riscos aceitos' README.md && rg -q 'DOCKER_DEFAULT_PLATFORM=linux/amd64' README.md"`
+**C25** - A documentação traz como rodar, como testar, as suposições, os riscos aceitos e o aviso do `mysql:5.7` amd64, e o README aponta para o índice (AC 19)
+Proof: `bash -c "rg -q 'docs/README.md' README.md && rg -q '^\./mvnw test' README.md && rg -q 'DOCKER_DEFAULT_PLATFORM=linux/amd64' docs/how-to/rodar-localmente.md && rg -q '^# Suposições' docs/reference/suposicoes.md && rg -q '^# Riscos aceitos' docs/explanation/riscos-aceitos.md"`
 
-**C26** - O README lista cada linha de `## Assumptions` do plano (AC 19)
-Proof: `bash -c "python3 -I .specs/features/mini-autorizador/assumptions_no_readme.py .specs/features/mini-autorizador/plan.md README.md"`
+**C26** - `docs/reference/suposicoes.md` lista cada linha de `## Assumptions` do plano (AC 19)
+Proof: `bash -c "python3 -I .specs/features/mini-autorizador/assumptions_no_readme.py .specs/features/mini-autorizador/plan.md docs/reference/suposicoes.md"`
 
 **C27** - A chave duplicada vira 422 só pelo erro de chave duplicada; outra violação de integridade não vira 422 (plan Assumptions, Inserção do cartão)
 Proof: `./mvnw -q test -Dtest='TratamentoErrosTest#soChaveDuplicadaVira422'`
@@ -129,7 +129,7 @@ Proof: `./mvnw -q test -Dtest='TratamentoErrosTest#soChaveDuplicadaVira422'`
 
 ## Handoff
 
-- **Settled mid-build:** none
+- **Settled mid-build:** 2026-11-16 - user: "Aprovo tudo" - docs reorganizados pela Diátaxis, ADR-0001 e ADR-0002, e C25/C26 passam a provar a mesma afirmação sobre `docs/` em vez do README
 - **Dispatched:** ponytail-reviewer em `6405faf` (diff da árvore vazia até `6405faf`) - returned, 0 achados; impl-verifier em `0865207` - returned, 2 achados fechados em `7decbc6`
 - **Boundary:** C1-C27 closed at `6405faf`
 - **Abandoned:** none
