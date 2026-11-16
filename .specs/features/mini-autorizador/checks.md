@@ -53,13 +53,13 @@ Proof: `./mvnw -q test -Dtest='TransacaoApiTest#senhaErradaComSaldoInsuficienteR
 Proof: `./mvnw -q test -Dtest='ConcorrenciaTest'`
 
 **C14** - As regras de autorização não usam `if`, `break` nem `continue` (AC 14)
-Proof: `bash -c "! rg -n -w 'if|break|continue' src/main/java/br/com/miniautorizador/transacao"`
+Proof: `bash -c "! rg -n -w -e if -e break -e continue src/main/java/br/com/miniautorizador/transacao"`
 
 **C15** - `POST /transacoes` com `Accept: application/json` responde o mesmo status e corpo puro, nunca 406 (AC 20)
 Proof: `./mvnw -q test -Dtest='TransacaoApiTest#acceptJsonNaoDa406'`
 
 **C16** - Dinheiro sem `double` nem `float` no código de produção (AC 21)
-Proof: `bash -c "! rg -n -w 'double|float|Double|Float' src/main/java"`
+Proof: `bash -c "! rg -n -w -e double -e float -e Double -e Float src/main/java"`
 
 **C17** - Dez transações de `0.10` a partir de `500.00` deixam o saldo exatamente em `499.00` (AC 21)
 Proof: `./mvnw -q test -Dtest='TransacaoApiTest#dezCentavosSomamExato'`

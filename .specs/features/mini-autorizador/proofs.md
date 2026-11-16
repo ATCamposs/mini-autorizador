@@ -1,6 +1,6 @@
 # mini-autorizador proofs
 
-**HEAD**: 0865207
+**HEAD**: 2a6ace1
 **Tree**: clean
 **Result**: 30 pass, 0 fail; mutations 3 killed, 0 not
 
