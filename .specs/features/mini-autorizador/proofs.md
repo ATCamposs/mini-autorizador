@@ -1,8 +1,8 @@
 # mini-autorizador proofs
 
-**HEAD**: 2675cbe
+**HEAD**: 0865207
 **Tree**: clean
-**Result**: 30 pass, 0 fail; mutations 0 killed, 0 not
+**Result**: 30 pass, 0 fail; mutations 3 killed, 0 not
 
 | Check | Proof | Ran | Passed | Result |
 | --- | --- | --- | --- | --- |
@@ -36,3 +36,11 @@
 | C26 | `bash -c "python3 -I .specs/features/mini-autorizador/assumptions_no_readme.py .specs/features/mini-autorizador` | count unknown | - | pass |
 | C27 | `./mvnw -q test -Dtest='TratamentoErrosTest#soChaveDuplicadaVira422'` | count unknown | - | pass |
 | Build | `./mvnw -q -DskipTests package` | - | - | pass |
+
+## Mutations
+
+| Mutation | Location | Killed |
+| --- | --- | --- |
+| débito atômico -> ler saldo, conferir em Java e gravar saldo absoluto (lost update) | `src/main/java/br/com/miniautorizador/cartao/CartaoRepository.java:34` | yes |
+| saldo >= valor -> saldo > valor (saldo igual ao valor recusado) | `src/main/java/br/com/miniautorizador/cartao/CartaoRepository.java:34` | yes |
+| catch DuplicateKeyException -> DataIntegrityViolationException (qualquer violação vira 422) | `src/main/java/br/com/miniautorizador/cartao/CartaoService.java:28` | yes |

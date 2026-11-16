@@ -77,6 +77,7 @@ class CartaoApiTest extends IntegracaoBase {
 		HttpResponse<String> depois = get("/cartoes/" + numero);
 
 		assertThat(inicial.statusCode()).isEqualTo(200);
+		assertThat(inicial.headers().firstValue("Content-Type")).hasValueSatisfying(tipo -> assertThat(tipo).startsWith("application/json"));
 		assertThat(inicial.body()).isEqualTo("500.00");
 		assertThat(depois.body()).isEqualTo("495.15");
 	}
@@ -85,11 +86,16 @@ class CartaoApiTest extends IntegracaoBase {
 	void saldoDeCartaoInexistenteResponde404SemCorpo() {
 		HttpResponse<String> inexistente = get("/cartoes/" + numeroNovo());
 		HttpResponse<String> malformado = get("/cartoes/abc");
+		String cadastrado = numeroNovo();
+		criarCartao(cadastrado, "1234");
+		HttpResponse<String> comEspaco = get("/cartoes/" + cadastrado + "%20");
 
 		assertThat(inexistente.statusCode()).isEqualTo(404);
 		assertThat(inexistente.body()).isEmpty();
 		assertThat(malformado.statusCode()).isEqualTo(404);
 		assertThat(malformado.body()).isEmpty();
+		assertThat(comEspaco.statusCode()).isEqualTo(404);
+		assertThat(comEspaco.body()).isEmpty();
 	}
 
 	@Test

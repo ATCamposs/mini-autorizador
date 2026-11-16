@@ -43,8 +43,8 @@ class CartaoController {
 
 	/** A ordem dos componentes é a ordem do JSON no contrato: senha antes do número. */
 	record NovoCartao(
-			@NotNull @Pattern(regexp = "[\\x20-\\x7E]{1,72}") String senha,
-			@NotNull @Pattern(regexp = "\\d{13,19}") String numeroCartao) {
+			@NotNull @Pattern(regexp = Cartao.FORMATO_SENHA) String senha,
+			@NotNull @Pattern(regexp = Cartao.FORMATO_NUMERO) String numeroCartao) {
 	}
 
 }

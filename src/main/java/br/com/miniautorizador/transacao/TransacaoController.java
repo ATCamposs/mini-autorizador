@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.miniautorizador.cartao.Cartao;
+
 @RestController
 class TransacaoController {
 
@@ -36,8 +38,8 @@ class TransacaoController {
 	}
 
 	record NovaTransacao(
-			@NotNull @Pattern(regexp = "\\d{13,19}") String numeroCartao,
-			@NotNull @Pattern(regexp = "[\\x20-\\x7E]{1,72}") String senhaCartao,
+			@NotNull @Pattern(regexp = Cartao.FORMATO_NUMERO) String numeroCartao,
+			@NotNull @Pattern(regexp = Cartao.FORMATO_SENHA) String senhaCartao,
 			@NotNull @Positive @Digits(integer = 17, fraction = 2) BigDecimal valor) {
 	}
 

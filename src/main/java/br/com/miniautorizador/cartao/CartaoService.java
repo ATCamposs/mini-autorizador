@@ -31,7 +31,7 @@ public class CartaoService {
 	}
 
 	Optional<BigDecimal> saldo(String numero) {
-		return repository.buscar(numero).map(Cartao::saldo);
+		return Optional.of(numero).filter(n -> n.matches(Cartao.FORMATO_NUMERO)).flatMap(repository::buscar).map(Cartao::saldo);
 	}
 
 }

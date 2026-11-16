@@ -1,0 +1,23 @@
+[
+  {
+    "file": "src/main/java/br/com/miniautorizador/cartao/CartaoRepository.java",
+    "old": "\t\treturn jdbc.sql(\"UPDATE cartao SET saldo = saldo - ? WHERE numero = ? AND saldo >= ?\")\n\t\t\t.params(valor, numero, valor)\n\t\t\t.update();",
+    "new": "\t\tBigDecimal lido = buscar(numero).map(Cartao::saldo).orElse(BigDecimal.ZERO);\n\t\treturn lido.compareTo(valor) >= 0 ? jdbc.sql(\"UPDATE cartao SET saldo = ? WHERE numero = ?\").params(lido.subtract(valor), numero).update() : 0;",
+    "proof": "./mvnw -q test -Dtest='ConcorrenciaTest'",
+    "label": "débito atômico -> ler saldo, conferir em Java e gravar saldo absoluto (lost update)"
+  },
+  {
+    "file": "src/main/java/br/com/miniautorizador/cartao/CartaoRepository.java",
+    "old": "AND saldo >= ?",
+    "new": "AND saldo > ?",
+    "proof": "./mvnw -q test -Dtest='TransacaoApiTest#transacaoAprovadaDebitaEResponde201Ok'",
+    "label": "saldo >= valor -> saldo > valor (saldo igual ao valor recusado)"
+  },
+  {
+    "file": "src/main/java/br/com/miniautorizador/cartao/CartaoService.java",
+    "old": "catch (DuplicateKeyException e)",
+    "new": "catch (org.springframework.dao.DataIntegrityViolationException e)",
+    "proof": "./mvnw -q test -Dtest='TratamentoErrosTest#soChaveDuplicadaVira422'",
+    "label": "catch DuplicateKeyException -> DataIntegrityViolationException (qualquer violação vira 422)"
+  }
+]
