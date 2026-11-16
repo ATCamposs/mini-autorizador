@@ -11,7 +11,7 @@ public class CartaoRepository {
 
 	private final JdbcClient jdbc;
 
-	CartaoRepository(JdbcClient jdbc) {
+	public CartaoRepository(JdbcClient jdbc) {
 		this.jdbc = jdbc;
 	}
 
