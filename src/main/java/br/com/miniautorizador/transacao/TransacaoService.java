@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import br.com.miniautorizador.cartao.Cartao;
 import br.com.miniautorizador.cartao.CartaoRepository;
 
-/** Regras de autorização sem if: cada regra recusa por exceção, na ordem cartão, senha, saldo. */
+/** Regras de autorização sem desvio condicional: cada regra recusa por exceção, na ordem cartão, senha, saldo. */
 @Service
 public class TransacaoService {
 
